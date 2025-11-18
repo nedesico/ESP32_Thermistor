@@ -61,5 +61,6 @@ void loop() {
 
 
 <h2>Real world example:</h2>
-<img src="https://raw.githubusercontent.com/nedesico/ESP32_Thermistor/refs/heads/main/rwe.jpg">
+<img src="https://raw.githubusercontent.com/nedesico/ESP32_Thermistor/refs/heads/main/rwe.png">
+
 
