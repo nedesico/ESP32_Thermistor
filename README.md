@@ -1,3 +1,6 @@
+# ESP32_Thermistor
+Easy NTC thermistor reading on ESP32 with self-calibrating voltage reference. Supports averaging, calibration offset, and automatic reference from a sacrificial ADC pin. Helps to improve accuracy in temperature projects.
+
 <h2>Basic Usage:</h2>
 
 ```
@@ -62,5 +65,6 @@ void loop() {
 
 <h2>Real world example:</h2>
 <img src="https://raw.githubusercontent.com/nedesico/ESP32_Thermistor/refs/heads/main/rwe.png">
+
 
 
