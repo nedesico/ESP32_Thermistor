@@ -73,6 +73,13 @@ float ESP32_Thermistor::read() {
   if(_decimal==1) {
     return (floor(_steinhart * 10) / 10);
   }
+  if(_decimal==2) {
+    return (floor(_steinhart * 100) / 100);
+  }
+  if(_decimal==3) {
+    return (floor(_steinhart * 1000) / 1000);
+  }
+  return _steinhart;
 }
 
 void ESP32_Thermistor::setOffset(float offset) {
