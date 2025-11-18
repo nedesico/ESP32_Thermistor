@@ -21,11 +21,11 @@ class ESP32_Thermistor {
   private:
     uint8_t  _pin;
     float    _ThermR;
-    float    _beta = 3095;
     float    _SeriesR;
+    float    _beta = 3095;
     float    _offset = 1.0;
     float    _adcRefMax = 4095.0;
-    bool      _reversed = false;
+    bool     _reversed = false;
     uint8_t  _adcRefPin = 255;
 
     float   _readAnalogAvg(uint8_t pin);

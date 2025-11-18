@@ -4,11 +4,11 @@
 #define ESP32T_SAMPLES 10
 #define ESP32T_SAMPLEDELAY 1
 
-ESP32_Thermistor::ESP32_Thermistor(uint8_t pin, float ThermR, float beta, float SeriesR) {
+ESP32_Thermistor::ESP32_Thermistor(uint8_t pin, float ThermR, float SeriesR, float beta) {
   _pin          = pin;
   _ThermR       = ThermR;
-  _beta         = beta;
   _SeriesR      = SeriesR;
+  _beta         = beta;
 }
 
 void ESP32_Thermistor::begin() {
@@ -28,8 +28,8 @@ void ESP32_Thermistor::_updateAdcRef() {
 
 float ESP32_Thermistor::_readAnalogAvg(uint8_t pin) {
   if (pin == 255) pin = _pin;
-  float sum = 0;
-  int count = 0;
+  float sum;
+  int count;
   for (uint8_t i = 0; i < ESP32T_SAMPLES; i++) {
     sum += analogRead(pin);
     count++;
