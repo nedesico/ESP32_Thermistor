@@ -40,4 +40,5 @@ class ESP32_Thermistor {
     void    _updateAdcRef();
 };
 
+// https://downloads.arduino.cc/libraries/logs/github.com/nedesico/ESP32_Thermistor/
 #endif
