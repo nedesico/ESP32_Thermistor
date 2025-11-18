@@ -1,3 +1,4 @@
+<h2>Basic Usage:</h2>
 ```python
 #include <ESP32_Thermistor.h>
 
@@ -55,3 +56,7 @@ void loop() {
   Serial.printf("Thermistor 2: %.2f °C\n", t2);
   delay(2000);
 }
+python```
+
+<h2>Real world example:</h2>
+<img src="https://raw.githubusercontent.com/nedesico/ESP32_Thermistor/refs/heads/main/rwe.jpg">
