@@ -1,0 +1,12 @@
+{
+  "name": "ESP32_Thermistor",
+  "keywords": "sensor, thermistor, ntc, themperature, calibration",
+  "description": "Easy NTC thermistor reading on ESP32 with self-calibrating voltage reference. Supports averaging, calibration offset, and automatic reference from a sacrificial ADC pin. Helps to improve accuracy in temperature projects.",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/nedesico/ESP32_Thermistor.git"
+  },
+  "version": "1.0.4",
+  "frameworks": "arduino",
+  "platforms": "*"
+}
