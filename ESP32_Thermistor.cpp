@@ -38,27 +38,41 @@ float ESP32_Thermistor::_readAnalogAvg(uint8_t pin) {
   return sum / count;
 }
 
+float ESP32_Thermistor::readADCMaxReference() {
+  return _adcRefMax;
+}
+
 float ESP32_Thermistor::readRawVoltage() {
-  float adc = _readAnalogAvg(_pin);
-  return adc * 3.1f / _adcRefMax;
+  return _adcValue * 3.1f / _adcRefMax;
+}
+
+float ESP32_Thermistor::readADCValue() {
+  return _adcValue;
+}
+
+float ESP32_Thermistor::readResistance() {
+  return _resistance;
 }
 
 float ESP32_Thermistor::read() {
-  int adcValue = _readAnalogAvg(_pin);
-  if (adcValue < 10 || adcValue > _adcRefMax - 10) return NAN;
-  float resistance = (_SeriesR * (adcValue / (_adcRefMax - adcValue)));
+  _adcValue = _readAnalogAvg(_pin);
+  if (_adcValue < 10 || _adcValue > _adcRefMax - 10) return NAN;
+  _resistance = (_SeriesR * (_adcValue / (_adcRefMax - _adcValue)));
   float steinhart;
   if(_reversed) {
-    steinhart = (resistance/_ThermR);
+    steinhart = (_resistance/_ThermR);
   } else {
-    steinhart = (_ThermR/resistance);
+    steinhart = (_ThermR/_resistance);
   }
   steinhart = log(steinhart);
   steinhart = (steinhart/_beta);
   steinhart = (steinhart+(1 / (25 + 273.15)));
   steinhart = (1 / steinhart);
   steinhart = (steinhart-273.15);
-  return steinhart * _offset;
+  _steinhart = steinhart * _offset;
+  if(_decimal==1) {
+    return (floor(_steinhart * 10) / 10);
+  }
 }
 
 void ESP32_Thermistor::setOffset(float offset) {
@@ -67,4 +81,8 @@ void ESP32_Thermistor::setOffset(float offset) {
 
 void ESP32_Thermistor::setAdcRefPin(uint8_t pin) { // New setter implementation
   _adcRefPin = pin;
+}
+
+void ESP32_Thermistor::toDecimal(int decimal) {
+  _decimal = decimal;
 }
