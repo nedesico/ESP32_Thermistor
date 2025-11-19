@@ -8,7 +8,7 @@ Easy NTC thermistor reading on ESP32 with self-calibrating voltage reference. Su
 
 /**
  * The ADCREF_PIN is a sacrificial pin to dynamically read the maximum ADC value for the ESP32 ADC channel.
- * Wire this pin directly to the 3.3v output of the EPS32.
+ * Wire this pin directly to the 3.3v output of the ESP32.
  * !!!! DO NOT CONNECT THE ADCREF_PIN TO THE 5V / VCC PIN OR USE THIS PIN FOR ANYTHING ELSE !!!!
  * !!!! YOU WILL BRICK YOUR DEVICE OR GET INACCURATE RESULTS IF YOU DO !!!!
 */
@@ -37,15 +37,17 @@ void setup() {
 
   /**
    * setOffset()
-   * Additional optional calibration. Multiplies the ADC value with this amount.
+   * (optional)
+   * Additional optional calibration. Multiplies the temperature value with this amount.
    * Example: 1.1 = +10% increased offset. 0.9 = -10% decreased offset
    */
   temp2.setOffset(1.1);
 
   /**
    * Thermistor hardware setup.
-   * Default: false = Thermistor to 3.3v, Series resistor to GND.
-   * Reversed: Set to true = Series resistor to 3.3v, Thermistor to GND
+   * (optional)
+   * Default: Set to false = Thermistor goes to 3.3v, Series resistor goes to GND.
+   * Reversed: Set to true = Series resistor goes to 3.3v, Thermistor goes to GND
    */
   temp2.setReversed(true);
 
@@ -65,6 +67,7 @@ void loop() {
 
 <h2>Real world example:</h2>
 <img src="https://raw.githubusercontent.com/nedesico/ESP32_Thermistor/refs/heads/main/rwe.png">
+
 
 
 
