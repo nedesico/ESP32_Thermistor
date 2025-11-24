@@ -25,14 +25,8 @@ Easy NTC thermistor reading on ESP32 with self-calibrating voltage reference. Su
 #define TEMP1 2 // Thermistor to ESP32 pin 2
 #define TEMP2 3 // Thermistor to ESP32 pin 3
 
-/**
- * pin (required),
- * thermistor resistance at 25C (required),
- * series resistor (required),
- * B-value (optional, defaults to 3950)
- */
-ESP32_Thermistor temp1(TEMP1, 100000, 100000);
-ESP32_Thermistor temp2(TEMP2, 10000, 10000, 3534);
+ESP32_Thermistor temp1;
+ESP32_Thermistor temp2;
 
 void setup() {
   Serial.begin(115200);
@@ -67,9 +61,13 @@ void setup() {
 
   /**
    * Begin the readings
+   * pin (required),
+   * thermistor resistance at 25C (required),
+   * series resistor (required),
+   * B-value (optional, defaults to 3950)
    */
-  temp1.begin();
-  temp2.begin();
+  temp1.begin(TEMP1, 100000, 100000);
+  temp2.begin(TEMP2, 10000, 10000, 3534);
 }
 
 void loop() {

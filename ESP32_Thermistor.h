@@ -5,13 +5,13 @@
 
 class ESP32_Thermistor {
   public:
-    ESP32_Thermistor(uint8_t pin, // required
+    ESP32_Thermistor();
+
+    void    begin(uint8_t pin, // required
                      float ThermR, // required
                      float SeriesR, // required
                      float beta = 3950 // optional
                     );
-
-    void    begin();
     float   read(); // Returns temperature in °C
     float   readADCMaxReference(); // Get the max ADC reference value
     float   readRawVoltage(); // Get the raw voltage of the pin

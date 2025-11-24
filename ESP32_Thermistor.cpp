@@ -4,14 +4,14 @@
 #define ESP32T_SAMPLES 10
 #define ESP32T_SAMPLEDELAY 1
 
-ESP32_Thermistor::ESP32_Thermistor(uint8_t pin, float ThermR, float SeriesR, float beta) {
+ESP32_Thermistor::ESP32_Thermistor() {
+}
+
+void ESP32_Thermistor::begin(uint8_t pin, float ThermR, float SeriesR, float beta) {
   _pin          = pin;
   _ThermR       = ThermR;
   _SeriesR      = SeriesR;
   _beta         = beta;
-}
-
-void ESP32_Thermistor::begin() {
   analogReadResolution(12);
   analogSetAttenuation(ADC_11db);
   _updateAdcRef();  // Measure reference if you have a clean ADCREF_PIN wired to ESP32 3.3v output
@@ -80,6 +80,10 @@ float ESP32_Thermistor::read() {
     return (floor(_steinhart * 1000) / 1000);
   }
   return _steinhart;
+}
+
+void ESP32_Thermistor::setReversed(bool reversed) {
+  _reversed = reversed;
 }
 
 void ESP32_Thermistor::setOffset(float offset) {
