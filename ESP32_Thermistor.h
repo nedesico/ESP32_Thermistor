@@ -2,6 +2,7 @@
 #define ESP32_Thermistor_h
 
 #include <Arduino.h>
+#include "HardwareSerial.h"
 
 class ESP32_Thermistor {
   public:

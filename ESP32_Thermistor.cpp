@@ -20,7 +20,7 @@ void ESP32_Thermistor::begin(uint8_t pin, float ThermR, float SeriesR, float bet
 void ESP32_Thermistor::_updateAdcRef() {
   if (_adcRefPin != 255) {
     float refReading = _readAnalogAvg(_adcRefPin);
-    if (refReading > 100 && refReading < 4095) {
+    if (refReading > 100) {
       _adcRefMax = refReading;
     }
   }
@@ -56,7 +56,7 @@ float ESP32_Thermistor::readResistance() {
 
 float ESP32_Thermistor::read() {
   _adcValue = _readAnalogAvg(_pin);
-  if (_adcValue < 10 || _adcValue > _adcRefMax - 10) return NAN;
+  if (_adcValue < 10 || _adcValue > _adcRefMax) return NAN;
   _resistance = (_SeriesR * (_adcValue / (_adcRefMax - _adcValue)));
   float steinhart;
   if(_reversed) {
